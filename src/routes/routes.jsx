@@ -1,12 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home.jsx";
-import Error from "../pages/Error.jsx";
+import NotFound from "../pages/NotFound.jsx";
+import GeneralError from "../pages/GeneralError.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-    errorElement: <Error />,
+    errorElement: <GeneralError />,
+    children: [
+      {
+        index: true,
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
   },
 ]);
 
