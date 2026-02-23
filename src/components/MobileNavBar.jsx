@@ -14,6 +14,7 @@ export default function MobileNavBar({ open, setOpen }) {
         <div
           onClick={closeNavBar}
           className="fixed inset-0 z-40 bg-transparent md:hidden"
+          aria-hidden="true"
         ></div>
       )}
 
