@@ -33,13 +33,13 @@ export default function MobileNavBar({ open, setOpen }) {
                 type="button"
                 onClick={closeNavBar}
                 className="ml-auto flex size-6 cursor-pointer items-center justify-center"
+                aria-label="Close navigation menu"
               >
                 <img
                   src="/assets/shared/icon-close.svg"
-                  alt="Close mobile nav bar"
+                  alt=""
                   className="h-full w-full"
                 />
-                <span className="sr-only">Close menu</span>
               </button>
             </div>
             <nav>
