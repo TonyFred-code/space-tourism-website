@@ -54,6 +54,7 @@ export default function MobileNavBar({ open, setOpen }) {
                         className={({ isActive, isPending }) =>
                           `flex gap-3 border-r-[3px] transition-colors focus-visible:outline-none focus-visible:border-white/75 cursor-pointer duration-500 text-white hover:border-white/50 capitalize ${isActive ? "border-white" : isPending ? "border-white/50" : "border-transparent"} `
                         }
+                        onClick={closeNavBar}
                       >
                         <span className="desktop-text-preset-8-bold">
                           {index}
