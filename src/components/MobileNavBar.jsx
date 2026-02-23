@@ -74,6 +74,6 @@ export default function MobileNavBar({ open, setOpen }) {
 }
 
 MobileNavBar.propTypes = {
-  open: bool,
-  setOpen: func,
+  open: bool.isRequired,
+  setOpen: func.isRequired,
 };

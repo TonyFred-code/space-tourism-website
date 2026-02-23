@@ -42,6 +42,6 @@ export default function NavBar({ mobileMenuOpen, setMobileMenuOpen }) {
 }
 
 NavBar.propTypes = {
-  mobileMenuOpen: bool,
-  setMobileMenuOpen: func,
+  mobileMenuOpen: bool.isRequired,
+  setMobileMenuOpen: func.isRequired,
 };
