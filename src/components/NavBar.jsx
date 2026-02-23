@@ -32,6 +32,7 @@ export default function NavBar({ mobileMenuOpen, setMobileMenuOpen }) {
         <button
           className="flex h-5.25 w-6 cursor-pointer items-center justify-center"
           onClick={toggleMobileMenuOpen}
+          aria-label="Open navigation menu"
         >
           <img src="/assets/shared/icon-hamburger.svg" alt="" />
         </button>
@@ -41,6 +42,6 @@ export default function NavBar({ mobileMenuOpen, setMobileMenuOpen }) {
 }
 
 NavBar.propTypes = {
-  mobileMenuOpen: bool,
-  setMobileMenuOpen: func,
+  mobileMenuOpen: bool.isRequired,
+  setMobileMenuOpen: func.isRequired,
 };

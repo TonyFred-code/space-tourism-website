@@ -3,7 +3,7 @@ import Header from "../components/Header.jsx";
 
 export default function Home() {
   return (
-    <div className="cover flex min-h-screen flex-col bg-blue-900 bg-[url('/assets/home/background-home-mobile.jpg')] bg-no-repeat md:bg-[url('/assets/home/background-home-tablet.jpg')] bg-size-[100%_100%] lg:bg-[url('/assets/home/background-home-desktop.jpg')]">
+    <div className="flex min-h-screen flex-col bg-blue-900 bg-[url('/assets/home/background-home-mobile.jpg')] bg-no-repeat md:bg-[url('/assets/home/background-home-tablet.jpg')] bg-size-[100%_100%] lg:bg-[url('/assets/home/background-home-desktop.jpg')]">
       <Header />
       <main className="flex flex-1 flex-col gap-6 p-6 md:gap-15 md:px-10 md:py-32 lg:flex-row">
         <div className="flex flex-1 flex-col gap-6 lg:justify-end">

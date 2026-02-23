@@ -14,6 +14,7 @@ export default function MobileNavBar({ open, setOpen }) {
         <div
           onClick={closeNavBar}
           className="fixed inset-0 z-40 bg-transparent md:hidden"
+          aria-hidden="true"
         ></div>
       )}
 
@@ -33,13 +34,13 @@ export default function MobileNavBar({ open, setOpen }) {
                 type="button"
                 onClick={closeNavBar}
                 className="ml-auto flex size-6 cursor-pointer items-center justify-center"
+                aria-label="Close navigation menu"
               >
                 <img
                   src="/assets/shared/icon-close.svg"
-                  alt="Close mobile nav bar"
+                  alt=""
                   className="h-full w-full"
                 />
-                <span className="sr-only">Close menu</span>
               </button>
             </div>
             <nav>
@@ -54,6 +55,7 @@ export default function MobileNavBar({ open, setOpen }) {
                         className={({ isActive, isPending }) =>
                           `flex gap-3 border-r-[3px] transition-colors focus-visible:outline-none focus-visible:border-white/75 cursor-pointer duration-500 text-white hover:border-white/50 capitalize ${isActive ? "border-white" : isPending ? "border-white/50" : "border-transparent"} `
                         }
+                        onClick={closeNavBar}
                       >
                         <span className="desktop-text-preset-8-bold">
                           {index}
@@ -73,6 +75,6 @@ export default function MobileNavBar({ open, setOpen }) {
 }
 
 MobileNavBar.propTypes = {
-  open: bool,
-  setOpen: func,
+  open: bool.isRequired,
+  setOpen: func.isRequired,
 };

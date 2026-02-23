@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.1] - 2026-02-23
+
+### Changed
+
+- Enforced explicit file extensions for all local imports via ESlint configuration
+- Enhanced accessibility with proper aria-label and aria-hidden attributes on navigation components
+- Removed redundant path declaration on index route
+- Improved PropTypes validation by marking required props as .isRequired
+- Enhance mobile UX by auto closing mobile menu on mobile nav menu link click
+
+---
+
 ## [0.1.0] — 2026-02-23
 
 ### Added

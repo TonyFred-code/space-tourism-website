@@ -1,6 +1,6 @@
 import { Link, useRouteError } from "react-router-dom";
 import { motion } from "framer-motion";
-import Header from "../components/Header";
+import Header from "../components/Header.jsx";
 import WarningSVG from "../components/helpers/WarningSVG.jsx";
 import StarField from "../components/helpers/StarField.jsx";
 
