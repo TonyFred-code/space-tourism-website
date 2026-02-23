@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import Header from "../components/Header";
+import Header from "../components/Header.jsx";
 import AstronautSVG from "../components/helpers/AstronautSVG.jsx";
 import StarField from "../components/helpers/StarField.jsx";
 
