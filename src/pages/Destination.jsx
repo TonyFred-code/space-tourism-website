@@ -61,7 +61,7 @@ export default function Destination() {
       <main className="flex-1 p-6 md:p-10 flex flex-col gap-6 max-w-6xl mx-auto lg:pt-12 w-full">
         <h1 className="uppercase flex gap-6 text-white mobile-text-preset-6 justify-center md:justify-start md:tablet-text-preset-5 lg:desktop-text-preset-5">
           <span className="font-bold opacity-25">01</span>
-          <span className="">pick your destination</span>
+          <span>pick your destination</span>
         </h1>
         <div
           className="flex flex-col gap-8 items-center lg:flex-row"
