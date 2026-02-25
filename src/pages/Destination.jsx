@@ -6,12 +6,10 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function Destination() {
   const { destinations } = useData();
   const intervalRef = useRef(null);
-  const [activeDestinationIndex, setActiveDestinationIndex] = useState(0);
   const [slideShowPaused, setSlideShowPaused] = useState(false);
-  const tabs = [];
-  const tabContent = [];
-  const tabImages = [];
-  const INTERVAL_DURATION = 5000; // 5 SECONDS;
+  const [activeDestinationIndex, setActiveDestinationIndex] = useState(0);
+  const activeDestination = destinations[activeDestinationIndex];
+  const INTERVAL_DURATION = 5000; // 5 SECONDS
 
   const startInterval = useCallback(() => {
     intervalRef.current = setInterval(() => {
@@ -52,16 +50,6 @@ export default function Destination() {
     return () => clearInterval(intervalRef.current);
   }, [startInterval, slideShowPaused]);
 
-  destinations.forEach((destination, index) => {
-    tabs[index] = destination.name;
-    tabContent[index] = {
-      description: destination.description,
-      distance: destination.distance,
-      travel: destination.travel,
-    };
-    tabImages[index] = destination.images;
-  });
-
   function updateActiveDestinationIndex(index) {
     setActiveDestinationIndex(index);
     resetInterval();
@@ -92,7 +80,7 @@ export default function Destination() {
                 className="flex items-center justify-center size-37.5 md:size-75 lg:size-120"
               >
                 <img
-                  src={tabImages[activeDestinationIndex].webp}
+                  src={activeDestination.images.webp}
                   className="w-full h-full"
                   alt=""
                 />
@@ -103,15 +91,15 @@ export default function Destination() {
           {/* TAB CONTENT */}
           <div className="flex flex-col md:py-10.5 max-w-lg flex-1 gap-6 lg:gap-10 lg:max-w-111">
             <div className="flex gap-8 justify-center lg:justify-start">
-              {tabs.map((tab, index) => {
+              {destinations.map((destination, index) => {
                 return (
                   <button
                     type="button"
                     className={`border-b-transparent border-b-3 pb-2.5 cursor-pointer hover:border-b-white/50 mobile-text-preset-8 md:desktop-text-preset-8 ${activeDestinationIndex === index ? "text-white border-b-white" : "text-blue-300"}`}
-                    key={tab}
+                    key={destination.name}
                     onClick={() => updateActiveDestinationIndex(index)}
                   >
-                    {tab}
+                    {destination.name}
                   </button>
                 );
               })}
@@ -128,10 +116,10 @@ export default function Destination() {
               >
                 <article className="flex flex-col gap-4 items-center lg:items-start">
                   <h1 className="mobile-text-preset-2 md:desktop-text-preset-2 uppercase text-white">
-                    {tabs[activeDestinationIndex]}
+                    {activeDestination.name}
                   </h1>
                   <p className="text-center text-white mobile-text-preset-9 md:tablet-text-preset-9 lg:text-left">
-                    {tabContent[activeDestinationIndex].description}
+                    {activeDestination.description}
                   </p>
                 </article>
                 <hr className="w-full h-px text-white opacity-25" />
@@ -141,7 +129,7 @@ export default function Destination() {
                       avg. distance
                     </h2>
                     <p className="desktop-text-preset-6 text-white uppercase">
-                      {tabContent[activeDestinationIndex].distance}
+                      {activeDestination.distance}
                     </p>
                   </article>
                   <article className="space-y-3 flex-1">
@@ -149,7 +137,7 @@ export default function Destination() {
                       est. travel time
                     </h2>
                     <p className="desktop-text-preset-6 text-white uppercase">
-                      {tabContent[activeDestinationIndex].travel}
+                      {activeDestination.travel}
                     </p>
                   </article>
                 </div>
