@@ -5,11 +5,13 @@ export default async function fetchData() {
 
   try {
     const response = await fetch("/data.json");
-    const data = await response.json();
 
     if (!response.ok) throw new Error("Network response was not ok.");
 
-    if (!data) throw new Error("Data fetch failed");
+    const data = await response.json();
+
+    if (!data.destinations || !data.crew || !data.technology)
+      throw new Error("Data fetch failed");
 
     cache = data;
     return data;
