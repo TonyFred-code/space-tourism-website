@@ -24,7 +24,10 @@ export default function Destination() {
   }, [destinations.length, slideShowPaused]);
 
   function resetInterval() {
-    clearInterval(intervalRef.current);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
     startInterval();
   }
 
