@@ -6,183 +6,147 @@
   --color-blue-900: #0b0d17;
 
   --color-white: #ffffff;
+
+  /* ---- TYPOGRAPHY ---- */
+  --font-bellefair: "Bellefair", serif;
+  --font-barlow-condensed: "Barlow Condensed", sans-serif;
+  --font-barlow: "Barlow", sans-serif;
 }
 
 /* ---- DESKTOP ---- */
 @utility desktop-text-preset-1 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 144px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility desktop-text-preset-2 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 96px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility desktop-text-preset-3 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 56px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility desktop-text-preset-4 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 32px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility desktop-text-preset-5 {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 400;
   font-size: 28px;
-  line-height: normal;
   letter-spacing: 4px;
+  @apply font-normal font-barlow-condensed;
 }
 
 @utility desktop-text-preset-6 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 28px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility desktop-text-preset-7 {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 400;
   font-size: 14px;
-  line-height: normal;
   letter-spacing: 2px;
+  @apply font-barlow-condensed font-normal;
 }
 
 @utility desktop-text-preset-8 {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 400;
   font-size: 16px;
-  line-height: normal;
   letter-spacing: 2px;
+  @apply font-barlow-condensed font-normal;
 }
 
 @utility desktop-text-preset-8-bold {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 700;
   font-size: 16px;
-  line-height: normal;
   letter-spacing: 2.7px;
+  @apply font-barlow-condensed font-bold;
 }
 
 @utility desktop-text-preset-9 {
-  font-family: "Barlow", sans-serif;
-  font-weight: 400;
   font-size: 18px;
   line-height: 1.8;
   letter-spacing: 0px;
+  @apply font-barlow font-normal;
 }
 
 /* ---- TABLET ---- */
 @utility tablet-text-preset-2 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 80px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility tablet-text-preset-3 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 40px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility tablet-text-preset-4 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 24px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility tablet-text-preset-5 {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 400;
   font-size: 20px;
-  line-height: normal;
   letter-spacing: 0.15em;
+  @apply font-barlow-condensed font-normal;
 }
 
 @utility tablet-text-preset-9 {
-  font-family: "Barlow", sans-serif;
-  font-weight: 400;
   font-size: 16px;
   line-height: 1.8;
   letter-spacing: 0px;
+  @apply font-barlow font-normal;
 }
 
 /* ---- MOBILE ---- */
 @utility mobile-text-preset-1 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 80px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility mobile-text-preset-2 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 56px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-bellefair font-normal;
 }
 
 @utility mobile-text-preset-3 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 24px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-normal font-bellefair;
 }
 
 @utility mobile-text-preset-4 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
   font-size: 18px;
-  line-height: normal;
   letter-spacing: 0px;
+  @apply font-normal font-bellefair;
 }
 
 @utility mobile-text-preset-6 {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 400;
   font-size: 16px;
-  line-height: normal;
   letter-spacing: 0.15em;
+  @apply font-barlow-condensed font-normal;
 }
 
 @utility mobile-text-preset-8 {
-  font-family: "Barlow Condensed", sans-serif;
-  font-weight: 400;
   font-size: 14px;
-  line-height: normal;
   letter-spacing: 0.15em;
+  @apply font-barlow-condensed font-normal;
 }
 
 @utility mobile-text-preset-9 {
-  font-family: "Barlow", sans-serif;
-  font-weight: 400;
   font-size: 15px;
   line-height: 1.8;
   letter-spacing: 0px;
+  @apply font-barlow font-normal;
 }
