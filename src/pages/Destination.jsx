@@ -80,7 +80,7 @@ export default function Destination() {
                 <img
                   src={activeDestination.images.webp}
                   className="w-full h-full"
-                  alt=""
+                  alt={`Image of ${activeDestination.name}`}
                 />
               </motion.span>
             </AnimatePresence>
