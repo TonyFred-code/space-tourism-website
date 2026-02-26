@@ -7,27 +7,25 @@ export default function Destination() {
   const { destinations } = useData();
   const intervalRef = useRef(null);
   const [slideShowPaused, setSlideShowPaused] = useState(false);
+  const slideShowPausedRef = useRef(null);
   const [activeDestinationIndex, setActiveDestinationIndex] = useState(0);
   const activeDestination = destinations[activeDestinationIndex];
   const INTERVAL_DURATION = 5000; // 5 SECONDS
 
+  useEffect(() => {
+    slideShowPausedRef.current = slideShowPaused;
+  }, [slideShowPaused]);
+
   const startInterval = useCallback(() => {
+    clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      if (!slideShowPaused) {
+      if (!slideShowPausedRef.current) {
         setActiveDestinationIndex((prev) =>
           prev === destinations.length - 1 ? 0 : prev + 1
         );
       }
     }, INTERVAL_DURATION);
-  }, [destinations.length, slideShowPaused]);
-
-  function resetInterval() {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    startInterval();
-  }
+  }, [destinations.length]);
 
   useEffect(() => {
     function handleVisibilityChange() {
@@ -52,7 +50,7 @@ export default function Destination() {
 
   function updateActiveDestinationIndex(index) {
     setActiveDestinationIndex(index);
-    resetInterval();
+    startInterval();
   }
 
   return (
