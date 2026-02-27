@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.2.1] - 2026-02-25
+
+### Changed
+
+- Update and increase custom page loader duration calculation
+- Refactor slideshow pause/play logic using synced ref
+- Refactor slideshow tabs rendering logic
+- Improve data properties check for fetched data
+- Add accessibility labels to tab images and loader component
+
+---
+
 ## [0.2.0] - 2026-02-25
 
 ### Added
