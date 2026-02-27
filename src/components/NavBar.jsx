@@ -18,7 +18,7 @@ export default function NavBar({ mobileMenuOpen, setMobileMenuOpen }) {
               <NavLink
                 to={path}
                 className={({ isActive, isPending }) =>
-                  `desktop-text-preset-8 flex items-center gap-3 border-b-[3px] py-[38.5px] text-white uppercase transition-colors hover:border-b-white/50 focus-visible:outline-none focus-visible:border-white/75 cursor-pointer duration-300 ${isActive ? "border-b-white" : isPending ? "border-b-white/50" : "border-b-transparent"}`
+                  `desktop-text-preset-8 flex items-center gap-3 border-b-3 py-[38.5px] text-white uppercase transition-colors hover:border-b-white/50 focus-visible:outline-none focus-visible:border-white/75 cursor-pointer duration-300 ${isActive ? "border-b-white" : isPending ? "border-b-white/50" : "border-b-transparent"}`
                 }
               >
                 <span className="desktop-text-preset-8-bold">{index}</span>

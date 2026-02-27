@@ -11,21 +11,24 @@ export default function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const LOADER_DURATION = { min: 900, max: 999 };
+    const LOADER_DURATION = { min: 1400, max: 1599 };
+    const startTime = Date.now();
     fetchData()
       .then((d) => {
         setData(d);
       })
       .finally(() => {
-        setTimeout(
-          () => {
-            setIsLoading(false);
-          },
-          Math.floor(
-            Math.random() * (LOADER_DURATION.max - LOADER_DURATION.min + 1) +
-              LOADER_DURATION.min
-          )
+        const elapsed = Date.now() - startTime;
+        const targetDelayDuration = Math.floor(
+          Math.random() * (LOADER_DURATION.max - LOADER_DURATION.min + 1) +
+            LOADER_DURATION.min
         );
+        const remainingTime = Math.max(0, targetDelayDuration - elapsed);
+        // Time calculations ensure delay duration does not go beyond targetDelayDuration
+
+        setTimeout(() => {
+          setIsLoading(false);
+        }, remainingTime);
       });
   }, []);
 
