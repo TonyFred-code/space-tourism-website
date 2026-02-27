@@ -50,7 +50,6 @@ export default function Crew() {
 
   function updateActiveCrewMemberIndex(index) {
     setActiveCrewMemberIndex(index);
-    startInterval();
   }
 
   return (
