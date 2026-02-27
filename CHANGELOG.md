@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 --
 
+## [0.3.1] - 2026-02-27
+
+## Changed
+
+- Added accessibility attributes to tab only crew buttons
+- Fixed tab content framer animation rendering
+- Removed call to `startInterval` on manual slideShow change handler
+
+--
+
 ## [0.3.0] - 2026-02-27
 
 ### Added
