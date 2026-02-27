@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 --
 
+## [0.4.0] - 2026-02-27
+
+### Added
+
+- Added `/technology` route to the router
+- Added Technology page with tech auto/manual slideshow using FramerMotion
+
+### Changed
+
+- Refactor Crew page slideshow content and tab buttons animation
+
+--
+
 ## [0.3.1] - 2026-02-27
 
 ### Changed
