@@ -50,7 +50,6 @@ export default function Destination() {
 
   function updateActiveDestinationIndex(index) {
     setActiveDestinationIndex(index);
-    startInterval();
   }
 
   return (
