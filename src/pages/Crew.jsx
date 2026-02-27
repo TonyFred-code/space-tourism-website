@@ -94,6 +94,8 @@ export default function Crew() {
                     key={crewMember.name}
                     className={`size-2.5 lg:size-3.75 rounded-full ${activeCrewMemberIndex === index ? "bg-white" : "bg-white/15"} cursor-pointer hover:bg-white/50`}
                     onClick={() => updateActiveCrewMemberIndex(index)}
+                    aria-label={`Select ${crewMember.name}`}
+                    aria-pressed={activeCrewMemberIndex === index}
                   ></button>
                 );
               })}
