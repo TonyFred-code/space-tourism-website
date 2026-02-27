@@ -102,7 +102,7 @@ export default function Technology() {
                     key={`${tech}-${index}`}
                     className={`size-10 md:size-14 lg:size-20 md:tablet-text-preset-4 lg:desktop-text-preset-4 rounded-full mobile-text-preset-4 ${activeTechIndex === index ? "text-blue-900 bg-white border-white" : "text-white border-white/25"} transition-all duration-300 border hover:border-white cursor-pointer`}
                     onClick={() => updateActiveTechIndex(index)}
-                    aria-label={`Select ${activeTech.name}`}
+                    aria-label={`Select ${tech.name}`}
                     aria-pressed={activeTechIndex === index}
                   >
                     {index + 1}
