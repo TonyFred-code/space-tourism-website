@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 --
 
+## [0.4.1] - 2026-02-27
+
+### Changed
+
+- Enhanced `aria-label` for `Technology` slideshow tab buttons
+- Switch `Technology` slideshow tab buttons to a more unique react key prop value
+
+--
+
 ## [0.4.0] - 2026-02-27
 
 ### Added
