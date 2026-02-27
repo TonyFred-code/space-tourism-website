@@ -65,16 +65,16 @@ export default function Crew() {
           onMouseEnter={() => setSlideShowPaused(true)}
           onMouseLeave={() => setSlideShowPaused(false)}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCrewMemberIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="flex-1 flex flex-col gap-6 md:max-w-lg md:mx-auto md:w-full lg:max-w-135 lg:justify-center"
-            >
-              <div className="space-y-6 py-10">
+          <div className="flex-1 flex flex-col gap-6 md:max-w-lg md:mx-auto md:w-full lg:max-w-135 lg:justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCrewMemberIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="space-y-6 py-10 flex-1 flex flex-col justify-center"
+              >
                 <h1 className="flex flex-col gap-2 uppercase items-center lg:items-start md:gap-4">
                   <span className="mobile-text-preset-4 md:tablet-text-preset-4 text-white/50 lg:desktop-text-preset-4">
                     {activeCrewMember.role}
@@ -86,27 +86,27 @@ export default function Crew() {
                 <p className="text-blue-300 mobile-text-preset-9 lg:desktop-text-preset-9 md:tablet-text-preset-9 text-center lg:text-left">
                   {activeCrewMember.bio}
                 </p>
-              </div>
-              <div className="flex gap-2 justify-center items-center lg:justify-start lg:gap-10">
-                {crew.map((crewMember, index) => {
-                  return (
-                    <button
-                      type="button"
-                      key={crewMember.name}
-                      className={`size-2.5 lg:size-3.75 rounded-full ${activeCrewMemberIndex === index ? "bg-white" : "bg-white/15"} cursor-pointer hover:bg-white/50`}
-                      onClick={() => updateActiveCrewMemberIndex(index)}
-                      aria-label={`Select ${crewMember.name}`}
-                      aria-pressed={activeCrewMemberIndex === index}
-                    ></button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+            <div className="flex gap-2 justify-center items-center lg:justify-start lg:gap-10">
+              {crew.map((crewMember, index) => {
+                return (
+                  <button
+                    type="button"
+                    key={crewMember.name}
+                    className={`size-2.5 lg:size-3.75 rounded-full ${activeCrewMemberIndex === index ? "bg-white" : "bg-white/15"} cursor-pointer hover:bg-white/50 transition-all duration-300`}
+                    onClick={() => updateActiveCrewMemberIndex(index)}
+                    aria-label={`Select ${crewMember.name}`}
+                    aria-pressed={activeCrewMemberIndex === index}
+                  ></button>
+                );
+              })}
+            </div>
+          </div>
           <div className="flex-1 flex items-end justify-center">
             <AnimatePresence mode="wait">
               <motion.span
-                className="flex items-center justify-center min-w-68 md:min-w-110 lg:min-w-135"
+                className="flex items-center justify-center max-w-68 md:max-w-110 lg:max-w-135"
                 key={activeCrewMemberIndex}
                 initial={{ opacity: 0, scale: 0.95, y: -20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
