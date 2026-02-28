@@ -1,7 +1,7 @@
 {
   "name": "space-tourism-website-main",
   "private": false,
-  "version": "0.4.1",
+  "version": "1.0.0",
   "type": "module",
   "repository": {
     "type": "git",
