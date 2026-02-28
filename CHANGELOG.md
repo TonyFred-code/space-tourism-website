@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-02-28
+
+### Added
+
+- Included screenshot of v1 project build
+
+### Changed
+
+- Updated `README.md` with project relevant content
+- Improve CHANGELOG based on choice format
+
+### Removed
+
+- Removed starter/template files
+
+--
+
 --
 
 ## [0.4.1] - 2026-02-27
@@ -34,8 +51,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Added accessibility attributes to crew tab change buttons
-- Fixed tab content missing FramerMotion AnimatePresence wrapper
 - Removed call to `startInterval` on manual slideshow change handler
+
+### Fixed
+
+- Add missing FramerMotion AnimatePresence wrapper where needed
 
 --
 
