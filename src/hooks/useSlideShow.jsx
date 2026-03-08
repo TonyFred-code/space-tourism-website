@@ -55,5 +55,10 @@ export default function useSlideShow(updateSlideShow) {
 
   const resumeSlideShow = () => setSlideShowPaused(false);
 
-  return { resumeSlideShow, pauseSlideShow, startInterval };
+  const restartSlideShow = () => {
+    setSlideShowPaused(false);
+    startInterval();
+  };
+
+  return { resumeSlideShow, pauseSlideShow, restartSlideShow };
 }

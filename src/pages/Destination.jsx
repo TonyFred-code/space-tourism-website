@@ -8,7 +8,7 @@ import PageWrapper from "../components/helpers/PageWrapper.jsx";
 export default function Destination() {
   const { destinations } = useData();
   const [activeDestinationIndex, setActiveDestinationIndex] = useState(0);
-  const { resumeSlideShow, pauseSlideShow, startInterval } = useSlideShow(
+  const { resumeSlideShow, pauseSlideShow, restartSlideShow } = useSlideShow(
     () => {
       setActiveDestinationIndex((prev) =>
         prev === destinations.length - 1 ? 0 : prev + 1
@@ -19,7 +19,7 @@ export default function Destination() {
 
   function updateActiveDestinationIndex(index) {
     setActiveDestinationIndex(index);
-    startInterval();
+    restartSlideShow();
   }
 
   return (

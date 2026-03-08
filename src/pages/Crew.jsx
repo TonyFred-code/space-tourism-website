@@ -8,7 +8,7 @@ import PageWrapper from "../components/helpers/PageWrapper.jsx";
 export default function Crew() {
   const { crew } = useData();
   const [activeCrewMemberIndex, setActiveCrewMemberIndex] = useState(0);
-  const { pauseSlideShow, resumeSlideShow, startInterval } = useSlideShow(
+  const { pauseSlideShow, resumeSlideShow, restartSlideShow } = useSlideShow(
     () => {
       setActiveCrewMemberIndex((prev) =>
         prev === crew.length - 1 ? 0 : prev + 1
@@ -19,7 +19,7 @@ export default function Crew() {
 
   function updateActiveCrewMemberIndex(index) {
     setActiveCrewMemberIndex(index);
-    startInterval();
+    restartSlideShow();
   }
 
   return (
