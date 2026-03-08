@@ -3,6 +3,7 @@ import Header from "../components/Header.jsx";
 import useData from "../hooks/useData.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 import useSlideShow from "../hooks/useSlideShow.jsx";
+import PageTagHeader from "../components/PageTagHeader.jsx";
 
 export default function Destination() {
   const { destinations } = useData();
@@ -25,10 +26,7 @@ export default function Destination() {
     <div className="min-h-screen flex flex-col bg-blue-900 bg-size-[100%_100%] bg-[url('/assets/destination/background-destination-mobile.jpg')] md:bg-[url('/assets/destination/background-destination-tablet.jpg')] lg:bg-[url('/assets/destination/background-destination-desktop.jpg')] bg-no-repeat">
       <Header />
       <main className="flex-1 p-6 md:p-10 flex flex-col gap-6 max-w-6xl mx-auto lg:pt-12 w-full">
-        <h1 className="uppercase flex gap-6 text-white mobile-text-preset-6 justify-center md:justify-start md:tablet-text-preset-5 lg:desktop-text-preset-5">
-          <span className="font-bold opacity-25">01</span>
-          <span>pick your destination</span>
-        </h1>
+        <PageTagHeader index={"01"} content={"pick your destination"} />
         <div
           className="flex flex-col gap-8 items-center lg:flex-row"
           onMouseEnter={pauseSlideShow}

@@ -3,6 +3,7 @@ import Header from "../components/Header.jsx";
 import useData from "../hooks/useData.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 import useSlideShow from "../hooks/useSlideShow.jsx";
+import PageTagHeader from "../components/PageTagHeader.jsx";
 
 export default function Technology() {
   const { technology } = useData();
@@ -25,10 +26,7 @@ export default function Technology() {
     <div className="min-h-screen flex flex-col bg-blue-900 bg-[url('/assets/technology/background-technology-mobile.jpg')] md:bg-[url('/assets/technology/background-technology-tablet.jpg')] lg:bg-[url('/assets/technology/background-technology-desktop.jpg')] bg-size-[100%_100%]">
       <Header />
       <main className="flex-1 p-6 space-y-6 max-w-7xl py-12 lg:mx-auto">
-        <h1 className="uppercase flex gap-6 text-white mobile-text-preset-6 justify-center md:justify-start md:tablet-text-preset-5 lg:desktop-text-preset-5">
-          <span className="font-bold opacity-25">03</span>
-          <span>space launch 101</span>
-        </h1>
+        <PageTagHeader index={"03"} content={"space launch 101"} />
         <div
           className="flex flex-col gap-8 py-10 lg:flex-row"
           onMouseEnter={pauseSlideShow}
