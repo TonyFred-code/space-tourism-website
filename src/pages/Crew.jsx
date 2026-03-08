@@ -1,9 +1,9 @@
-import Header from "../components/Header.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 import useData from "../hooks/useData.jsx";
 import { useState } from "react";
 import useSlideShow from "../hooks/useSlideShow.jsx";
 import PageTagHeader from "../components/PageTagHeader.jsx";
+import PageWrapper from "../components/helpers/PageWrapper.jsx";
 
 export default function Crew() {
   const { crew } = useData();
@@ -23,8 +23,11 @@ export default function Crew() {
   }
 
   return (
-    <div className="bg-blue-900 bg-[url('/assets/crew/background-crew-mobile.jpg')] md:bg-[url('/assets/crew/background-crew-tablet.jpg')] lg:bg-[url('/assets/crew/background-crew-desktop.jpg')] bg-size-[100%_100%] min-h-screen flex flex-col">
-      <Header />
+    <PageWrapper
+      mobileBgImageSrc={"/assets/crew/background-crew-mobile.jpg"}
+      tabletBgImageSrc={"/assets/crew/background-crew-tablet.jpg"}
+      desktopBgImageSrc={"/assets/crew/background-crew-desktop.jpg"}
+    >
       <main className="flex-1 p-6 flex flex-col gap-6 lg:py-12 lg:mx-auto lg:max-w-6xl">
         <PageTagHeader index={"02"} content={"meet your crew"} />
         <div
@@ -90,6 +93,6 @@ export default function Crew() {
           </div>
         </div>
       </main>
-    </div>
+    </PageWrapper>
   );
 }

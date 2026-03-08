@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Header from "../components/Header.jsx";
 import useData from "../hooks/useData.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 import useSlideShow from "../hooks/useSlideShow.jsx";
 import PageTagHeader from "../components/PageTagHeader.jsx";
+import PageWrapper from "../components/helpers/PageWrapper.jsx";
 
 export default function Technology() {
   const { technology } = useData();
@@ -23,8 +23,11 @@ export default function Technology() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-blue-900 bg-[url('/assets/technology/background-technology-mobile.jpg')] md:bg-[url('/assets/technology/background-technology-tablet.jpg')] lg:bg-[url('/assets/technology/background-technology-desktop.jpg')] bg-size-[100%_100%]">
-      <Header />
+    <PageWrapper
+      mobileBgImageSrc={"/assets/technology/background-technology-mobile.jpg"}
+      tabletBgImageSrc={"/assets/technology/background-technology-tablet.jpg"}
+      desktopBgImageSrc={"/assets/technology/background-technology-desktop.jpg"}
+    >
       <main className="flex-1 p-6 space-y-6 max-w-7xl py-12 lg:mx-auto">
         <PageTagHeader index={"03"} content={"space launch 101"} />
         <div
@@ -104,6 +107,6 @@ export default function Technology() {
           </div>
         </div>
       </main>
-    </div>
+    </PageWrapper>
   );
 }

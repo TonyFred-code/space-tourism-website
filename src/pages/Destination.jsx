@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Header from "../components/Header.jsx";
 import useData from "../hooks/useData.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 import useSlideShow from "../hooks/useSlideShow.jsx";
 import PageTagHeader from "../components/PageTagHeader.jsx";
+import PageWrapper from "../components/helpers/PageWrapper.jsx";
 
 export default function Destination() {
   const { destinations } = useData();
@@ -23,8 +23,13 @@ export default function Destination() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-blue-900 bg-size-[100%_100%] bg-[url('/assets/destination/background-destination-mobile.jpg')] md:bg-[url('/assets/destination/background-destination-tablet.jpg')] lg:bg-[url('/assets/destination/background-destination-desktop.jpg')] bg-no-repeat">
-      <Header />
+    <PageWrapper
+      mobileBgImageSrc={"/assets/destination/background-destination-mobile.jpg"}
+      tabletBgImageSrc={"/assets/destination/background-destination-tablet.jpg"}
+      desktopBgImageSrc={
+        "/assets/destination/background-destination-desktop.jpg"
+      }
+    >
       <main className="flex-1 p-6 md:p-10 flex flex-col gap-6 max-w-6xl mx-auto lg:pt-12 w-full">
         <PageTagHeader index={"01"} content={"pick your destination"} />
         <div
@@ -51,7 +56,6 @@ export default function Destination() {
               </motion.span>
             </AnimatePresence>
           </div>
-
           {/* TAB CONTENT */}
           <div className="flex flex-col md:py-10.5 max-w-lg flex-1 gap-6 lg:gap-10 lg:max-w-111">
             <div className="flex gap-8 justify-center lg:justify-start">
@@ -68,7 +72,6 @@ export default function Destination() {
                 );
               })}
             </div>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeDestinationIndex}
@@ -110,6 +113,6 @@ export default function Destination() {
           </div>
         </div>
       </main>
-    </div>
+    </PageWrapper>
   );
 }
