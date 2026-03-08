@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2026-03-08
+
+### Fixed
+
+- Removed `AnimatePresence` wrapper from non-exiting static page contents
+- Switched pages backgroundImage from classNames interpolation to inline style rule
+- Fixed slideShow restarting on manual trigger
+
+---
+
 ## [1.1.0] - 2026-03-08
 
 ### Added
