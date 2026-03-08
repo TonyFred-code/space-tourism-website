@@ -9,7 +9,7 @@ export default function Technology() {
   const { technology } = useData();
   const [activeTechIndex, setActiveTechIndex] = useState(0);
   const activeTech = technology[activeTechIndex];
-  const { resumeSlideShow, pauseSlideShow, startInterval } = useSlideShow(
+  const { resumeSlideShow, pauseSlideShow, restartSlideShow } = useSlideShow(
     () => {
       setActiveTechIndex((prev) =>
         prev === technology.length - 1 ? 0 : prev + 1
@@ -19,7 +19,7 @@ export default function Technology() {
 
   function updateActiveTechIndex(index) {
     setActiveTechIndex(index);
-    startInterval();
+    restartSlideShow();
   }
 
   return (

@@ -4,6 +4,7 @@ export default function useSlideShow(updateSlideShow) {
   const [slideShowPaused, setSlideShowPaused] = useState(false);
   const slideShowPausedRef = useRef(null);
   const intervalRef = useRef(null);
+  const updateSlideShowRef = useRef(updateSlideShow);
   const INTERVAL_DURATION = 5_000; // 5 SECONDS
 
   const startInterval = useCallback(() => {
@@ -13,9 +14,14 @@ export default function useSlideShow(updateSlideShow) {
 
     intervalRef.current = setInterval(() => {
       if (!slideShowPausedRef.current) {
-        updateSlideShow();
+        updateSlideShowRef.current();
       }
     }, INTERVAL_DURATION);
+  }, []);
+
+  useEffect(() => {
+    // Sync updateSlideShow with ref
+    updateSlideShowRef.current = updateSlideShow;
   }, [updateSlideShow]);
 
   useEffect(() => {
@@ -36,7 +42,7 @@ export default function useSlideShow(updateSlideShow) {
 
   useEffect(() => {
     if (slideShowPaused) {
-      clearInterval(intervalRef);
+      clearInterval(intervalRef.current);
       return;
     }
 
@@ -49,5 +55,10 @@ export default function useSlideShow(updateSlideShow) {
 
   const resumeSlideShow = () => setSlideShowPaused(false);
 
-  return { resumeSlideShow, pauseSlideShow, startInterval };
+  const restartSlideShow = () => {
+    setSlideShowPaused(false);
+    startInterval();
+  };
+
+  return { resumeSlideShow, pauseSlideShow, restartSlideShow };
 }
