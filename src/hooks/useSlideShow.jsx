@@ -36,7 +36,7 @@ export default function useSlideShow(updateSlideShow) {
 
   useEffect(() => {
     if (slideShowPaused) {
-      clearInterval(intervalRef);
+      clearInterval(intervalRef.current);
       return;
     }
 
