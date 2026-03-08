@@ -1,69 +1,39 @@
-import Header from "../components/Header.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 import useData from "../hooks/useData.jsx";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import useSlideShow from "../hooks/useSlideShow.jsx";
+import PageTagHeader from "../components/PageTagHeader.jsx";
+import PageWrapper from "../components/helpers/PageWrapper.jsx";
 
 export default function Crew() {
   const { crew } = useData();
   const [activeCrewMemberIndex, setActiveCrewMemberIndex] = useState(0);
+  const { pauseSlideShow, resumeSlideShow, startInterval } = useSlideShow(
+    () => {
+      setActiveCrewMemberIndex((prev) =>
+        prev === crew.length - 1 ? 0 : prev + 1
+      );
+    }
+  );
   const activeCrewMember = crew[activeCrewMemberIndex];
-  const intervalRef = useRef(null);
-  const [slideShowPaused, setSlideShowPaused] = useState(false);
-  const slideShowPausedRef = useRef(null);
-  const INTERVAL_DURATION = 5000; // 5 SECONDS
-
-  useEffect(() => {
-    slideShowPausedRef.current = slideShowPaused;
-  }, [slideShowPaused]);
-
-  const startInterval = useCallback(() => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      if (!slideShowPausedRef.current) {
-        setActiveCrewMemberIndex((prev) =>
-          prev === crew.length - 1 ? 0 : prev + 1
-        );
-      }
-    }, INTERVAL_DURATION);
-  }, [crew.length]);
-
-  useEffect(() => {
-    function handleVisibilityChange() {
-      setSlideShowPaused(document.hidden);
-    }
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    if (slideShowPaused) {
-      clearInterval(intervalRef.current);
-      return;
-    }
-    startInterval();
-
-    return () => clearInterval(intervalRef.current);
-  }, [startInterval, slideShowPaused]);
 
   function updateActiveCrewMemberIndex(index) {
     setActiveCrewMemberIndex(index);
+    startInterval();
   }
 
   return (
-    <div className="bg-blue-900 bg-[url('/assets/crew/background-crew-mobile.jpg')] md:bg-[url('/assets/crew/background-crew-tablet.jpg')] lg:bg-[url('/assets/crew/background-crew-desktop.jpg')] bg-size-[100%_100%] min-h-screen flex flex-col">
-      <Header />
+    <PageWrapper
+      mobileBgImageSrc={"/assets/crew/background-crew-mobile.jpg"}
+      tabletBgImageSrc={"/assets/crew/background-crew-tablet.jpg"}
+      desktopBgImageSrc={"/assets/crew/background-crew-desktop.jpg"}
+    >
       <main className="flex-1 p-6 flex flex-col gap-6 lg:py-12 lg:mx-auto lg:max-w-6xl">
-        <h1 className="uppercase flex gap-6 text-white mobile-text-preset-6 justify-center md:justify-start md:tablet-text-preset-5 lg:desktop-text-preset-5">
-          <span className="font-bold opacity-25">02</span>
-          <span>meet your crew</span>
-        </h1>
+        <PageTagHeader index={"02"} content={"meet your crew"} />
         <div
           className="flex flex-col gap-6 lg:flex-row lg:gap-8"
-          onMouseEnter={() => setSlideShowPaused(true)}
-          onMouseLeave={() => setSlideShowPaused(false)}
+          onMouseEnter={pauseSlideShow}
+          onMouseLeave={resumeSlideShow}
         >
           <div className="flex-1 flex flex-col gap-6 md:max-w-lg md:mx-auto md:w-full lg:max-w-135 lg:justify-center">
             <AnimatePresence mode="wait">
@@ -123,6 +93,6 @@ export default function Crew() {
           </div>
         </div>
       </main>
-    </div>
+    </PageWrapper>
   );
 }

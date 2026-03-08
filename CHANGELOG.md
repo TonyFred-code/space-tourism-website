@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
+## [1.1.0] - 2026-03-08
+
+### Added
+
+- Added slide-in and scale-up to `Home` component content
+
+### Changed
+
+- Refactored slideshow animation auto playing into `useSlideShow` custom hook
+- Refactored pages container (`background-image` and `Header`)
+  into `PageWrapper` component
+- Refactor repeated page tag into `PageTagHeader` component with slide-in animation
+
+### Fixed
+
+- Corrected `CHANGELOG.md` inconsistent tense usage.
+- Changed `--` to proper `---` line separator in `CHANGELOG.md`
+
+---
+
 ## [1.0.0] - 2026-02-28
 
 ### Added
@@ -14,24 +36,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated `README.md` with project relevant content
-- Improve CHANGELOG based on choice format
+- Improved CHANGELOG based on chosen format
 
 ### Removed
 
 - Removed starter/template files
 
---
-
---
+---
 
 ## [0.4.1] - 2026-02-27
 
 ### Changed
 
 - Enhanced `aria-label` for `Technology` slideshow tab buttons
-- Switch `Technology` slideshow tab buttons to a more unique react key prop value
+- Switched `Technology` slideshow tab buttons to a more unique react key prop value
 
---
+---
 
 ## [0.4.0] - 2026-02-27
 
@@ -42,9 +62,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Refactor Crew page slideshow content and tab buttons animation
+- Refactored Crew page slideshow content and tab buttons animation
 
---
+---
 
 ## [0.3.1] - 2026-02-27
 
@@ -55,9 +75,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Add missing FramerMotion AnimatePresence wrapper where needed
+- Added missing FramerMotion AnimatePresence wrapper where needed
 
---
+---
 
 ## [0.3.0] - 2026-02-27
 
@@ -107,7 +127,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and aria-hidden attributes on navigation components
 - Removed redundant path declaration on index route
 - Improved PropTypes validation by marking required props as .isRequired
-- Enhance mobile UX by auto closing mobile menu on mobile nav menu link click
+- Enhanced mobile UX by auto closing mobile menu on mobile nav menu link click
 
 ---
 

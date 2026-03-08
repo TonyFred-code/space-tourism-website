@@ -1,69 +1,41 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import Header from "../components/Header.jsx";
+import { useState } from "react";
 import useData from "../hooks/useData.jsx";
 import { AnimatePresence, motion } from "framer-motion";
+import useSlideShow from "../hooks/useSlideShow.jsx";
+import PageTagHeader from "../components/PageTagHeader.jsx";
+import PageWrapper from "../components/helpers/PageWrapper.jsx";
 
 export default function Destination() {
   const { destinations } = useData();
-  const intervalRef = useRef(null);
-  const [slideShowPaused, setSlideShowPaused] = useState(false);
-  const slideShowPausedRef = useRef(null);
   const [activeDestinationIndex, setActiveDestinationIndex] = useState(0);
+  const { resumeSlideShow, pauseSlideShow, startInterval } = useSlideShow(
+    () => {
+      setActiveDestinationIndex((prev) =>
+        prev === destinations.length - 1 ? 0 : prev + 1
+      );
+    }
+  );
   const activeDestination = destinations[activeDestinationIndex];
-  const INTERVAL_DURATION = 5000; // 5 SECONDS
-
-  useEffect(() => {
-    slideShowPausedRef.current = slideShowPaused;
-  }, [slideShowPaused]);
-
-  const startInterval = useCallback(() => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      if (!slideShowPausedRef.current) {
-        setActiveDestinationIndex((prev) =>
-          prev === destinations.length - 1 ? 0 : prev + 1
-        );
-      }
-    }, INTERVAL_DURATION);
-  }, [destinations.length]);
-
-  useEffect(() => {
-    function handleVisibilityChange() {
-      setSlideShowPaused(document.hidden);
-    }
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    if (slideShowPaused) {
-      clearInterval(intervalRef.current);
-      return;
-    }
-    startInterval();
-
-    return () => clearInterval(intervalRef.current);
-  }, [startInterval, slideShowPaused]);
 
   function updateActiveDestinationIndex(index) {
     setActiveDestinationIndex(index);
+    startInterval();
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-blue-900 bg-size-[100%_100%] bg-[url('/assets/destination/background-destination-mobile.jpg')] md:bg-[url('/assets/destination/background-destination-tablet.jpg')] lg:bg-[url('/assets/destination/background-destination-desktop.jpg')] bg-no-repeat">
-      <Header />
+    <PageWrapper
+      mobileBgImageSrc={"/assets/destination/background-destination-mobile.jpg"}
+      tabletBgImageSrc={"/assets/destination/background-destination-tablet.jpg"}
+      desktopBgImageSrc={
+        "/assets/destination/background-destination-desktop.jpg"
+      }
+    >
       <main className="flex-1 p-6 md:p-10 flex flex-col gap-6 max-w-6xl mx-auto lg:pt-12 w-full">
-        <h1 className="uppercase flex gap-6 text-white mobile-text-preset-6 justify-center md:justify-start md:tablet-text-preset-5 lg:desktop-text-preset-5">
-          <span className="font-bold opacity-25">01</span>
-          <span>pick your destination</span>
-        </h1>
+        <PageTagHeader index={"01"} content={"pick your destination"} />
         <div
           className="flex flex-col gap-8 items-center lg:flex-row"
-          onMouseEnter={() => setSlideShowPaused(true)}
-          onMouseLeave={() => setSlideShowPaused(false)}
+          onMouseEnter={pauseSlideShow}
+          onMouseLeave={resumeSlideShow}
         >
           {/* ACTIVE TAB IMAGE */}
           <div className="flex justify-center py-7 flex-1 lg:py-32">
@@ -84,7 +56,6 @@ export default function Destination() {
               </motion.span>
             </AnimatePresence>
           </div>
-
           {/* TAB CONTENT */}
           <div className="flex flex-col md:py-10.5 max-w-lg flex-1 gap-6 lg:gap-10 lg:max-w-111">
             <div className="flex gap-8 justify-center lg:justify-start">
@@ -101,7 +72,6 @@ export default function Destination() {
                 );
               })}
             </div>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeDestinationIndex}
@@ -143,6 +113,6 @@ export default function Destination() {
           </div>
         </div>
       </main>
-    </div>
+    </PageWrapper>
   );
 }

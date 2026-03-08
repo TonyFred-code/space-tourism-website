@@ -1,69 +1,39 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import Header from "../components/Header.jsx";
+import { useState } from "react";
 import useData from "../hooks/useData.jsx";
 import { AnimatePresence, motion } from "framer-motion";
+import useSlideShow from "../hooks/useSlideShow.jsx";
+import PageTagHeader from "../components/PageTagHeader.jsx";
+import PageWrapper from "../components/helpers/PageWrapper.jsx";
 
 export default function Technology() {
   const { technology } = useData();
   const [activeTechIndex, setActiveTechIndex] = useState(0);
   const activeTech = technology[activeTechIndex];
-  const intervalRef = useRef(null);
-  const [slideShowPaused, setSlideShowPaused] = useState(false);
-  const slideShowPausedRef = useRef(null);
-  const INTERVAL_DURATION = 5000; // 5 SECONDS
-
-  useEffect(() => {
-    slideShowPausedRef.current = slideShowPaused;
-  }, [slideShowPaused]);
-
-  const startInterval = useCallback(() => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      if (!slideShowPausedRef.current) {
-        setActiveTechIndex((prev) =>
-          prev === technology.length - 1 ? 0 : prev + 1
-        );
-      }
-    }, INTERVAL_DURATION);
-  }, [technology.length]);
-
-  useEffect(() => {
-    function handleVisibilityChange() {
-      setSlideShowPaused(document.hidden);
+  const { resumeSlideShow, pauseSlideShow, startInterval } = useSlideShow(
+    () => {
+      setActiveTechIndex((prev) =>
+        prev === technology.length - 1 ? 0 : prev + 1
+      );
     }
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    if (slideShowPaused) {
-      clearInterval(intervalRef.current);
-      return;
-    }
-    startInterval();
-
-    return () => clearInterval(intervalRef.current);
-  }, [startInterval, slideShowPaused]);
+  );
 
   function updateActiveTechIndex(index) {
     setActiveTechIndex(index);
+    startInterval();
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-blue-900 bg-[url('/assets/technology/background-technology-mobile.jpg')] md:bg-[url('/assets/technology/background-technology-tablet.jpg')] lg:bg-[url('/assets/technology/background-technology-desktop.jpg')] bg-size-[100%_100%]">
-      <Header />
+    <PageWrapper
+      mobileBgImageSrc={"/assets/technology/background-technology-mobile.jpg"}
+      tabletBgImageSrc={"/assets/technology/background-technology-tablet.jpg"}
+      desktopBgImageSrc={"/assets/technology/background-technology-desktop.jpg"}
+    >
       <main className="flex-1 p-6 space-y-6 max-w-7xl py-12 lg:mx-auto">
-        <h1 className="uppercase flex gap-6 text-white mobile-text-preset-6 justify-center md:justify-start md:tablet-text-preset-5 lg:desktop-text-preset-5">
-          <span className="font-bold opacity-25">03</span>
-          <span>space launch 101</span>
-        </h1>
+        <PageTagHeader index={"03"} content={"space launch 101"} />
         <div
           className="flex flex-col gap-8 py-10 lg:flex-row"
-          onMouseEnter={() => setSlideShowPaused(true)}
-          onMouseLeave={() => setSlideShowPaused(false)}
+          onMouseEnter={pauseSlideShow}
+          onMouseLeave={resumeSlideShow}
         >
           <div className="flex-1 lg:order-1">
             <AnimatePresence mode="wait">
@@ -137,6 +107,6 @@ export default function Technology() {
           </div>
         </div>
       </main>
-    </div>
+    </PageWrapper>
   );
 }
