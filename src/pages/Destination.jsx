@@ -1,55 +1,24 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Header from "../components/Header.jsx";
 import useData from "../hooks/useData.jsx";
 import { AnimatePresence, motion } from "framer-motion";
+import useSlideShow from "../hooks/useSlideShow.jsx";
 
 export default function Destination() {
   const { destinations } = useData();
-  const intervalRef = useRef(null);
-  const [slideShowPaused, setSlideShowPaused] = useState(false);
-  const slideShowPausedRef = useRef(null);
   const [activeDestinationIndex, setActiveDestinationIndex] = useState(0);
+  const { resumeSlideShow, pauseSlideShow, startInterval } = useSlideShow(
+    () => {
+      setActiveDestinationIndex((prev) =>
+        prev === destinations.length - 1 ? 0 : prev + 1
+      );
+    }
+  );
   const activeDestination = destinations[activeDestinationIndex];
-  const INTERVAL_DURATION = 5000; // 5 SECONDS
-
-  useEffect(() => {
-    slideShowPausedRef.current = slideShowPaused;
-  }, [slideShowPaused]);
-
-  const startInterval = useCallback(() => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      if (!slideShowPausedRef.current) {
-        setActiveDestinationIndex((prev) =>
-          prev === destinations.length - 1 ? 0 : prev + 1
-        );
-      }
-    }, INTERVAL_DURATION);
-  }, [destinations.length]);
-
-  useEffect(() => {
-    function handleVisibilityChange() {
-      setSlideShowPaused(document.hidden);
-    }
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    if (slideShowPaused) {
-      clearInterval(intervalRef.current);
-      return;
-    }
-    startInterval();
-
-    return () => clearInterval(intervalRef.current);
-  }, [startInterval, slideShowPaused]);
 
   function updateActiveDestinationIndex(index) {
     setActiveDestinationIndex(index);
+    startInterval();
   }
 
   return (
@@ -62,8 +31,8 @@ export default function Destination() {
         </h1>
         <div
           className="flex flex-col gap-8 items-center lg:flex-row"
-          onMouseEnter={() => setSlideShowPaused(true)}
-          onMouseLeave={() => setSlideShowPaused(false)}
+          onMouseEnter={pauseSlideShow}
+          onMouseLeave={resumeSlideShow}
         >
           {/* ACTIVE TAB IMAGE */}
           <div className="flex justify-center py-7 flex-1 lg:py-32">

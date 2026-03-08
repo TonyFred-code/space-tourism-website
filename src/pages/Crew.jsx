@@ -1,55 +1,24 @@
 import Header from "../components/Header.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 import useData from "../hooks/useData.jsx";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import useSlideShow from "../hooks/useSlideShow.jsx";
 
 export default function Crew() {
   const { crew } = useData();
   const [activeCrewMemberIndex, setActiveCrewMemberIndex] = useState(0);
+  const { pauseSlideShow, resumeSlideShow, startInterval } = useSlideShow(
+    () => {
+      setActiveCrewMemberIndex((prev) =>
+        prev === crew.length - 1 ? 0 : prev + 1
+      );
+    }
+  );
   const activeCrewMember = crew[activeCrewMemberIndex];
-  const intervalRef = useRef(null);
-  const [slideShowPaused, setSlideShowPaused] = useState(false);
-  const slideShowPausedRef = useRef(null);
-  const INTERVAL_DURATION = 5000; // 5 SECONDS
-
-  useEffect(() => {
-    slideShowPausedRef.current = slideShowPaused;
-  }, [slideShowPaused]);
-
-  const startInterval = useCallback(() => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      if (!slideShowPausedRef.current) {
-        setActiveCrewMemberIndex((prev) =>
-          prev === crew.length - 1 ? 0 : prev + 1
-        );
-      }
-    }, INTERVAL_DURATION);
-  }, [crew.length]);
-
-  useEffect(() => {
-    function handleVisibilityChange() {
-      setSlideShowPaused(document.hidden);
-    }
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    if (slideShowPaused) {
-      clearInterval(intervalRef.current);
-      return;
-    }
-    startInterval();
-
-    return () => clearInterval(intervalRef.current);
-  }, [startInterval, slideShowPaused]);
 
   function updateActiveCrewMemberIndex(index) {
     setActiveCrewMemberIndex(index);
+    startInterval();
   }
 
   return (
@@ -62,8 +31,8 @@ export default function Crew() {
         </h1>
         <div
           className="flex flex-col gap-6 lg:flex-row lg:gap-8"
-          onMouseEnter={() => setSlideShowPaused(true)}
-          onMouseLeave={() => setSlideShowPaused(false)}
+          onMouseEnter={pauseSlideShow}
+          onMouseLeave={resumeSlideShow}
         >
           <div className="flex-1 flex flex-col gap-6 md:max-w-lg md:mx-auto md:w-full lg:max-w-135 lg:justify-center">
             <AnimatePresence mode="wait">
